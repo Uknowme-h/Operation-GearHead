@@ -1,0 +1,17 @@
+{
+  "name": "com.rowlan.microverse.extras.terraintextures",
+  "displayName": "Terrain Textures for MicroVerse",
+  "version": "1.0.0",
+  "author": {
+    "name": "Rowlan",
+    "email": "",
+    "url": ""
+  },
+  "unity": "2021.3",
+  "description": "Terrain Textures and Materials for MicroVerse and other Assets",
+  "keywords": [
+    "Content"
+  ],
+  "category": "environment",
+  "type": "content"
+}

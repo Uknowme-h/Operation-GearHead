@@ -1,2 +1,2 @@
 # game-projects
-this a silly game enviroments
+this is just a silly 3d game enviroment with a player character with fps controller

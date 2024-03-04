@@ -1,5 +1,5 @@
 # Auto detect text files and perform LF normalization
-*          text=auto
+./games/*          text=auto
 
 ./games/*.cs       text diff=csharp
 ./games/*.cshtml   text diff=html

@@ -1,8 +1,6 @@
-# Auto detect text files and perform LF normalization
-./games/*          text=auto
 
-./games/*.cs       text diff=csharp
-./games/*.cshtml   text diff=html
-./games/*.csx      text diff=csharp
-./games/*.sln      text eol=crlf
-./games/*.csproj   text eol=crlf
+./RoadArchitect-master/*.cs   linguist-language=false     
+./RoadArchitect-master/*.cshtml  linguist-language=false 
+./RoadArchitect-master/*.csx  linguist-language=false    
+./RoadArchitect-master/*.sln  linguist-language=false    
+./RoadArchitect-master/*.csproj   linguist-language=false

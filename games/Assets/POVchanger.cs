@@ -49,7 +49,7 @@ public class PovManager : MonoBehaviour
                 carController.enabled = false;
 
                 // Disable audio listener on car camera
-               playerCamera.GetComponent<AudioListener>().enabled = true;
+                playerCamera.GetComponent<AudioListener>().enabled = true;
                 CarCamera.GetComponent<AudioListener>().enabled = false;
                 break;
             case GameState.Car:
@@ -59,7 +59,7 @@ public class PovManager : MonoBehaviour
                 // Disable character controller and enable car controller
                 characterController.enabled = false;
                 carController.enabled = true;
-
+                
                 // Enable audio listener on player camera
                 playerCamera.GetComponent<AudioListener>().enabled = false;
                 CarCamera.GetComponent<AudioListener>().enabled = true;

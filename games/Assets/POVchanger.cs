@@ -24,6 +24,16 @@ public class PovManager : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<StarterAssets.ThirdPersonController>();
+        playerCamera.SetActive(true);
+        CarCamera.SetActive(false);
+
+        characterController.enabled = true;
+        carController.enabled = false;
+
+        playerCamera.GetComponent<AudioListener>().enabled = true;
+        CarCamera.GetComponent<AudioListener>().enabled = false;
+
+       
     }
 
     void Update()

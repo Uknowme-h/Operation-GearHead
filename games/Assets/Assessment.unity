@@ -345,6 +345,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000010230679374, guid: fee6e1da33beae9409089ab8a832464f, type: 3}
   m_PrefabInstance: {fileID: 11574834}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &13974490 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100008, guid: 6ab693db99e1c8a48939c522d49a62ba, type: 3}
+  m_PrefabInstance: {fileID: 691643595}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &13974493
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13974490}
+  m_Material: {fileID: 13400000, guid: b36e29e623ce9b5468984c4324503438, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 40.000023, y: 38.475853, z: 21.438845}
+  m_Center: {x: 8.374613, y: -0.0036343397, z: 1.7048504}
 --- !u!1001 &17385698
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8628,7 +8654,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 400010, guid: 6ab693db99e1c8a48939c522d49a62ba, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1979153972}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100008, guid: 6ab693db99e1c8a48939c522d49a62ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 13974493}
   m_SourcePrefab: {fileID: 100100000, guid: 6ab693db99e1c8a48939c522d49a62ba, type: 3}
 --- !u!4 &691643596 stripped
 Transform:
@@ -9162,6 +9191,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 28d592096e7e76148945c98658a6c011, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 28d592096e7e76148945c98658a6c011, type: 3}
+      propertyPath: m_UpdateMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 28d592096e7e76148945c98658a6c011, type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -11936,7 +11973,15 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: 42350cecc2959a246a2afc7215b375c5, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 42350cecc2959a246a2afc7215b375c5, type: 3}
       propertyPath: m_UpdateMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 42350cecc2959a246a2afc7215b375c5, type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -16351,6 +16396,10 @@ PrefabInstance:
       propertyPath: m_Avatar
       value: 
       objectReference: {fileID: 9000000, guid: 8f0565f23a2b58541a475bd3c1393052, type: 3}
+    - target: {fileID: 6982812146204527121, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 40db3173a05ae3242b1c182a09b0a183, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -18156,6 +18205,7 @@ GameObject:
   - component: {fileID: 1394190370}
   - component: {fileID: 1394190372}
   - component: {fileID: 1394190371}
+  - component: {fileID: 1394190373}
   m_Layer: 0
   m_Name: CarCamera
   m_TagString: Untagged
@@ -18237,6 +18287,20 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1394190373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394190369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a92a96427f950c49acc3814cf16926c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 100
+  carBody: {fileID: 1604212926}
 --- !u!1001 &1396317154
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20976,6 +21040,7 @@ MonoBehaviour:
   carController: {fileID: 1604212928}
   switchKey: 99
   characterController: {fileID: 1995045323}
+  switchDistanceThreshold: 3
 --- !u!114 &1604212928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25673,6 +25738,7 @@ MonoBehaviour:
   carController: {fileID: 1604212928}
   switchKey: 99
   characterController: {fileID: 1995045323}
+  switchDistanceThreshold: 3
 --- !u!114 &1995045323 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}

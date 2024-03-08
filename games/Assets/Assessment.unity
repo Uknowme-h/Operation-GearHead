@@ -15185,12 +15185,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1132584191}
   m_Layer: 0
-  m_Name: car sounds
+  m_Name: Carsounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1132584191
 Transform:
   m_ObjectHideFlags: 0
@@ -18221,13 +18221,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1394190369}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.22417976, y: -0.0050386884, z: 0.0012921217, w: 0.974534}
-  m_LocalPosition: {x: -0.14, y: 2.71, z: -0.89}
+  m_LocalRotation: {x: 0.29941776, y: -0.004922715, z: 0.0016807246, w: 0.95410794}
+  m_LocalPosition: {x: -0.010009766, y: 4.6, z: -4.1400146}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1604212926}
-  m_LocalEulerAnglesHint: {x: 25.91, y: -0.589, z: 0.017}
+  m_LocalEulerAnglesHint: {x: 34.846, y: -0.586, z: 0.018}
 --- !u!81 &1394190371
 AudioListener:
   m_ObjectHideFlags: 0
@@ -21037,6 +21037,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 2062653079}
   CarCamera: {fileID: 1394190369}
+  Carsounds: {fileID: 1132584190}
   carController: {fileID: 1604212928}
   switchKey: 99
   characterController: {fileID: 1995045323}
@@ -21077,7 +21078,7 @@ MonoBehaviour:
   RRWTireSkid: {fileID: 0}
   useUI: 0
   carSpeedText: {fileID: 0}
-  useSounds: 0
+  useSounds: 1
   carEngineSound: {fileID: 1653639625}
   tireScreechSound: {fileID: 1868737708}
   useTouchControls: 0
@@ -25735,6 +25736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 2062653079}
   CarCamera: {fileID: 1394190369}
+  Carsounds: {fileID: 1132584190}
   carController: {fileID: 1604212928}
   switchKey: 99
   characterController: {fileID: 1995045323}

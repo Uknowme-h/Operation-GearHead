@@ -9,6 +9,8 @@ public class PovManager : MonoBehaviour
     // Replace these with the actual names of your cameras in the scene
     public GameObject playerCamera;
     public GameObject CarCamera;
+    
+    public GameObject Carsounds;
 
     // Replace this with the actual name of your car controller script
     public PrometeoCarController carController; // Assuming your car control script derives from CarController
@@ -38,6 +40,7 @@ public class PovManager : MonoBehaviour
         {
             playerCamera.SetActive(true);
             CarCamera.SetActive(false);
+            Carsounds.SetActive(false);
 
             characterController.enabled = true;
             carController.enabled = false;
@@ -90,6 +93,7 @@ public class PovManager : MonoBehaviour
             characterController.enabled = true;
             carController.enabled = false;
 
+            Carsounds.SetActive(false);
             // Disable audio listener on car camera
             playerCamera.GetComponent<AudioListener>().enabled = true;
             CarCamera.GetComponent<AudioListener>().enabled = false;
@@ -110,6 +114,7 @@ public class PovManager : MonoBehaviour
             characterController.enabled = false;
             carController.enabled = true;
 
+             Carsounds.SetActive(true);
             // Enable audio listener on player camera
             playerCamera.GetComponent<AudioListener>().enabled = false;
             CarCamera.GetComponent<AudioListener>().enabled = true;

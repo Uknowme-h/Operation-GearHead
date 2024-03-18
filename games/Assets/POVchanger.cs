@@ -9,7 +9,6 @@ public class PovManager : MonoBehaviour
     // Replace these with the actual names of your cameras in the scene
     public GameObject playerCamera;
     public GameObject CarCamera;
-    
     public GameObject Carsounds;
 
     // Replace this with the actual name of your car controller script
@@ -63,6 +62,7 @@ public class PovManager : MonoBehaviour
             {
                 currentState = (currentState == GameState.Character) ? GameState.Car : GameState.Character;
                 UpdateCameraAndControls();
+                StartCoroutine(ShowTempMessage(5f, "Switching to " + currentState.ToString())); // Start coroutine with message
             }
             else
             {
@@ -81,96 +81,58 @@ public class PovManager : MonoBehaviour
     }
 
     void UpdateCameraAndControls()
-{
-    Debug.Log("Switching to " + currentState.ToString());
-    switch (currentState)
     {
-        case GameState.Character:
-            playerCamera.SetActive(true);
-            CarCamera.SetActive(false);
+        switch (currentState)
+        {
+            case GameState.Character:
+                playerCamera.SetActive(true);
+                CarCamera.SetActive(false);
 
-            // Enable character controller and disable car controller
-            characterController.enabled = true;
-            carController.enabled = false;
+                // Enable character controller and disable car controller
+                characterController.enabled = true;
+                carController.enabled = false;
 
-            Carsounds.SetActive(false);
-            // Disable audio listener on car camera
-            playerCamera.GetComponent<AudioListener>().enabled = true;
-            CarCamera.GetComponent<AudioListener>().enabled = false;
+                Carsounds.SetActive(false);
+                // Disable audio listener on car camera
+                playerCamera.GetComponent<AudioListener>().enabled = true;
+                CarCamera.GetComponent<AudioListener>().enabled = false;
 
-            // Make the character GameObject visible
-            characterController.gameObject.SetActive(true);
+                // Make the character GameObject visible
+                characterController.gameObject.SetActive(true);
 
-            // Reset the position and rotation of the character to match the car's
-            characterController.transform.position = carController.transform.position;
-            characterController.transform.rotation = carController.transform.rotation;
+                // Reset the position and rotation of the character to match the car's
+                characterController.transform.position = carController.transform.position;
+                characterController.transform.rotation = carController.transform.rotation;
 
-            break;
-        case GameState.Car:
-            playerCamera.SetActive(false);
-            CarCamera.SetActive(true);
+                break;
+            case GameState.Car:
+                playerCamera.SetActive(false);
+                CarCamera.SetActive(true);
 
-            // Disable character controller and enable car controller
-            characterController.enabled = false;
-            carController.enabled = true;
+                // Disable character controller and enable car controller
+                characterController.enabled = false;
+                carController.enabled = true;
 
-             Carsounds.SetActive(true);
-            // Enable audio listener on player camera
-            playerCamera.GetComponent<AudioListener>().enabled = false;
-            CarCamera.GetComponent<AudioListener>().enabled = true;
+                Carsounds.SetActive(true);
+                // Enable audio listener on player camera
+                playerCamera.GetComponent<AudioListener>().enabled = false;
+                CarCamera.GetComponent<AudioListener>().enabled = true;
 
-            // Make the character GameObject invisible
-            characterController.gameObject.SetActive(false);
-            break;
+                // Make the character GameObject invisible
+                characterController.gameObject.SetActive(false);
+                break;
+        }
+    }
+
+    IEnumerator ShowTempMessage(float duration, string message)
+    {
+        float timeElapsed = 0f;
+        while (timeElapsed < duration)
+        {
+            Debug.Log(message); // Log the provided message
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
     }
 }
 
-
-
-
-    public override bool Equals(object obj)
-    {
-        return obj is PovManager manager &&
-               base.Equals(obj) &&
-               name == manager.name &&
-               hideFlags == manager.hideFlags &&
-               EqualityComparer<Transform>.Default.Equals(transform, manager.transform) &&
-               EqualityComparer<GameObject>.Default.Equals(gameObject, manager.gameObject) &&
-               tag == manager.tag &&
-               EqualityComparer<Component>.Default.Equals(GetComponent<Rigidbody>(), manager.GetComponent<Rigidbody>()) &&
-               EqualityComparer<Component>.Default.Equals(GetComponent<Rigidbody2D>(), manager.GetComponent<Rigidbody2D>()) &&
-               EqualityComparer<Component>.Default.Equals(GetComponent<Camera>(), manager.GetComponent<Camera>()) &&
-               EqualityComparer<Component>.Default.Equals(GetComponent<Light>(), manager.GetComponent<Light>()) &&
-               EqualityComparer<Component>.Default.Equals(GetComponent<Animation>(), manager.GetComponent<Animation>()) &&
-               EqualityComparer<Component>.Default.Equals(GetComponent<ConstantForce>(), manager.GetComponent<ConstantForce>()) &&
-               EqualityComparer<Component>.Default.Equals(GetComponent<Renderer>(), manager.GetComponent<Renderer>()) &&
-               EqualityComparer<Component>.Default.Equals(GetComponent<AudioSource>(), manager.GetComponent<AudioSource>()) &&
-               // Remove reference to NetworkView
-               // EqualityComparer<Component>.Default.Equals(GetComponent<NetworkView>(), manager.GetComponent<NetworkView>()) &&
-               EqualityComparer<Component>.Default.Equals(GetComponent<Collider>(), manager.GetComponent<Collider>()) &&
-               EqualityComparer<Component>.Default.Equals(GetComponent<Collider2D>(), manager.GetComponent<Collider2D>()) &&
-               EqualityComparer<Component>.Default.Equals(GetComponent<HingeJoint>(), manager.GetComponent<HingeJoint>()) &&
-               EqualityComparer<Component>.Default.Equals(GetComponent<ParticleSystem>(), manager.GetComponent<ParticleSystem>()) &&
-               enabled == manager.enabled &&
-               isActiveAndEnabled == manager.isActiveAndEnabled &&
-               EqualityComparer<CancellationToken>.Default.Equals(destroyCancellationToken, manager.destroyCancellationToken) &&
-               useGUILayout == manager.useGUILayout &&
-               runInEditMode == manager.runInEditMode &&
-               EqualityComparer<GameObject>.Default.Equals(playerCamera, manager.playerCamera) &&
-               EqualityComparer<GameObject>.Default.Equals(CarCamera, manager.CarCamera) &&
-               EqualityComparer<PrometeoCarController>.Default.Equals(carController, manager.carController) &&
-               switchKey == manager.switchKey &&
-               currentState == manager.currentState &&
-               EqualityComparer<ThirdPersonController>.Default.Equals(characterController, manager.characterController);
-    }
-            
-    public override int GetHashCode()
-    {
-        return base.GetHashCode();
-    }
-
-    public override string ToString()
-    {
-        return base.ToString();
-    }
-}

@@ -58,11 +58,13 @@ public class PovManager : MonoBehaviour
     {
         if (Input.GetKeyDown(switchKey))
         {
-            if (CanSwitch()) // Check if the player can switch based on distance
+            if (CanSwitch())
             {
                 currentState = (currentState == GameState.Character) ? GameState.Car : GameState.Character;
                 UpdateCameraAndControls();
-                StartCoroutine(ShowTempMessage(5f, "Switching to " + currentState.ToString())); // Start coroutine with message
+                // Stop any currently running ShowTempMessage coroutine
+                //StopCoroutine(ShowTempMessage(5f, "Switching to " + currentState.ToString()));
+                //StartCoroutine(ShowTempMessage(5f, "Switching to " + currentState.ToString())); // Start new coroutine only when switching
             }
             else
             {
@@ -70,6 +72,7 @@ public class PovManager : MonoBehaviour
             }
         }
     }
+
 
     bool CanSwitch()
     {

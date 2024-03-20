@@ -1,9 +1,12 @@
+using System.Collections;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 
 // Remove Unity.VisualScripting (if not needed)
 using UnityEngine;
-using KeyCode = UnityEngine.KeyCode; // Explicitly define KeyCode type 
+using UnityEngine.UI;
+using KeyCode = UnityEngine.KeyCode; // Explicitly define KeyCode typeï¿½
 
 public class MissionController : MonoBehaviour
 {
@@ -11,7 +14,11 @@ public class MissionController : MonoBehaviour
     public bool Mission2 = false;
     public bool Mission3 = false;
     public bool Mission4 = false;
-
+    public GameObject mission1UI;
+    public GameObject mission2UI;
+    public GameObject mission3UI;
+    public TextMeshProUGUI ScoreUI;
+    private int score = 0;
     public GameObject car; // Reference to the car GameObject (or null if car is a Prefab)
     private float maxHeight = 0f; // Stores the maximum height of the car
     private Vector3 startPosition;
@@ -22,6 +29,9 @@ public class MissionController : MonoBehaviour
     private void Start()
     {
         racingTrackTrigger = GameObject.Find("raceTrackCollider").GetComponent<SphereCollider>();
+        mission1UI.SetActive(false);
+        mission2UI.SetActive(false);
+        mission3UI.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,7 +39,7 @@ public class MissionController : MonoBehaviour
         if (!Mission1)
         {
             Mission1 = true;
-            Debug.Log("Get in the car!");
+            mission1UI.SetActive(true);
         }
     }
 
@@ -38,6 +48,8 @@ public class MissionController : MonoBehaviour
         CheckCarActive();
         CheckRaceTrackTrigger();
         CheckLanding();
+
+        ScoreUI.text = "Score: " + score;
     }
 
     private void CheckCarActive()
@@ -46,7 +58,11 @@ public class MissionController : MonoBehaviour
         {
             Mission1 = false; // Reset Mission 1 as car is assumed active
             Mission2 = true;
-            Debug.Log("Go to the racing track!");
+            mission1UI.SetActive(false);
+            score += 10;
+            mission2UI.SetActive(true);
+
+
         }
     }
 
@@ -61,6 +77,18 @@ public class MissionController : MonoBehaviour
                 {
                     Mission2 = false;
                     Mission3 = true;
+                    score += 10;
+                    mission2UI.SetActive(false);
+                    mission3UI.SetActive(true);
+
+                    // Set a timeout to deactivate mission3UI after 3 seconds
+                    StartCoroutine(DeactivateMission3UI());
+
+                    IEnumerator DeactivateMission3UI()
+                    {
+                        yield return new WaitForSeconds(3f);
+                        mission3UI.SetActive(false);
+                    }
                     Debug.Log("Use the ramp to fly the car over to the other end. Try to attain maximum distance as possible.");
                     maxHeight = 0f; // Reset maximum height for new attempt
 

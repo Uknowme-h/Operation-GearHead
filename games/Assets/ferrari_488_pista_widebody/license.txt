@@ -1,0 +1,11 @@
+Model Information:
+* title:	Ferrari 488 Pista Widebody
+* source:	https://sketchfab.com/3d-models/ferrari-488-pista-widebody-16c28f5b3ed24991ac3d1208f4a8bc1f
+* author:	Dev365TH (https://sketchfab.com/dec365th)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Ferrari 488 Pista Widebody" (https://sketchfab.com/3d-models/ferrari-488-pista-widebody-16c28f5b3ed24991ac3d1208f4a8bc1f) by Dev365TH (https://sketchfab.com/dec365th) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -14,6 +14,7 @@ public class PovManager : MonoBehaviour
     public GameObject Carsounds;
     public GameObject unitychan;
     public GameObject charcter;
+    public GameObject carspeedUI;
     // Replace this with the actual name of your car controller script
     public PrometeoCarController carController; // Assuming your car control script derives from CarController
 
@@ -111,7 +112,7 @@ public class PovManager : MonoBehaviour
                 // Enable character controller and disable car controller
                 characterController.enabled = true;
                 carController.enabled = false;
-
+                carspeedUI.SetActive(false);
 
                 Carsounds.SetActive(false);
                 // Disable audio listener on car camera
@@ -132,6 +133,7 @@ public class PovManager : MonoBehaviour
                 // Disable character controller and enable car controller
                 characterController.enabled = false;
                 carController.enabled = true;
+                carspeedUI.SetActive(true);
 
 
                 Carsounds.SetActive(true);

@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using TMPro.Examples;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class RaceMissiontrigger : MonoBehaviour
 {
@@ -13,36 +11,66 @@ public class RaceMissiontrigger : MonoBehaviour
     public GameObject Lap2;
     public GameObject Lap3;
     public TextMeshPro TimerUI;
-    public TextMeshProUGUI ScoreUI;
 
+    private float countdownTime = 3 * 60f; // 3 minutes in seconds
+    private bool isCountdownActive = false;
 
     private void Start()
     {
         RaceMissionUI.SetActive(false);
+        TimerUI.text = ""; // Set initial text to empty
     }
 
     private void Update()
     {
-        
+        if (isCountdownActive)
+        {
+            countdownTime -= Time.deltaTime;
+            TimerUI.text = countdownTime.ToString("0:00"); // Update timer display
+
+            if (countdownTime <= 0)
+            {
+                Debug.Log("Too late! Mission aborted.");
+                // Perform any additional actions for mission failure here
+                isCountdownActive = false;
+                TimerUI.text = ""; // Clear timer display after countdown ends
+            }
+        }
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == MissionStart)
         {
-            
             RaceMissionUI.SetActive(true);
             StartCoroutine(DeactivateMission3UI());
 
-            IEnumerator DeactivateMission3UI()
+            if (!isCountdownActive)
             {
-                yield return new WaitForSeconds(3f);
-                RaceMissionUI.SetActive(false);
-                
+                StartCoroutine(Countdown());
+                isCountdownActive = true;
             }
+            else if (countdownTime > 0)
+            {
+                Debug.Log("You win!");
+                // Perform any additional actions for mission success here
+                isCountdownActive = false;
+                TimerUI.text = ""; // Clear timer display after success
+            }
+        }
+    }
 
+    IEnumerator DeactivateMission3UI()
+    {
+        yield return new WaitForSeconds(3f);
+        RaceMissionUI.SetActive(false);
+    }
 
-
-           
+    IEnumerator Countdown()
+    {
+        while (countdownTime > 0)
+        {
+            yield return null;
         }
     }
 }

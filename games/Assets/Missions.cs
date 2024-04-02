@@ -16,7 +16,6 @@ public class MissionController : MonoBehaviour
     public bool Mission4 = false;
     public GameObject mission1UI;
     public GameObject mission2UI;
-    public GameObject mission3UI;
     public TextMeshProUGUI ScoreUI;
     private int score = 0;
     public GameObject car; // Reference to the car GameObject (or null if car is a Prefab)
@@ -31,7 +30,6 @@ public class MissionController : MonoBehaviour
         racingTrackTrigger = GameObject.Find("raceTrackCollider").GetComponent<SphereCollider>();
         mission1UI.SetActive(false);
         mission2UI.SetActive(false);
-        mission3UI.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -46,7 +44,6 @@ public class MissionController : MonoBehaviour
     private void Update()
     {
         CheckCarActive();
-        CheckRaceTrackTrigger();
         CheckLanding();
 
         ScoreUI.text = "Score: " + score;
@@ -66,38 +63,7 @@ public class MissionController : MonoBehaviour
         }
     }
 
-    private void CheckRaceTrackTrigger()
-    {
-        if (Mission2)
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(car.transform.position, Vector3.forward, out hit, Mathf.Infinity)) // Raycast forward from car
-            {
-                if (hit.collider == racingTrackTrigger)
-                {
-                    Mission2 = false;
-                    Mission3 = true;
-                    score += 10;
-                    mission2UI.SetActive(false);
-                    mission3UI.SetActive(true);
 
-                    // Set a timeout to deactivate mission3UI after 3 seconds
-                    StartCoroutine(DeactivateMission3UI());
-
-                    IEnumerator DeactivateMission3UI()
-                    {
-                        yield return new WaitForSeconds(3f);
-                        mission3UI.SetActive(false);
-                    }
-                    Debug.Log("Use the ramp to fly the car over to the other end. Try to attain maximum distance as possible.");
-                    maxHeight = 0f; // Reset maximum height for new attempt
-
-                    // Store initial position
-                    startPosition = car.transform.position;
-                }
-            }
-        }
-    }
 
     private void CheckLanding()
     {

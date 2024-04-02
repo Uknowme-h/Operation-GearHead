@@ -6,19 +6,22 @@ using UnityEngine;
 public class RaceMissiontrigger : MonoBehaviour
 {
     public GameObject MissionStart;
-    public GameObject RaceMissionUI;
+    public TextMeshProUGUI RaceMissionUI;
+    public GameObject RaceUI;
     public GameObject Lap1;
     public GameObject Lap2;
     public GameObject Lap3;
     public TextMeshProUGUI TimerUI;
+    public TextMeshProUGUI Mission2;
 
-    private float countdownTime = 3 * 60f; // 3 minutes in seconds
+    private float countdownTime = 3 * 60f; 
     private bool isCountdownActive = false;
-    public bool isLap1 = false;
+    public int isLap1 = 1;
     private void Start()
     {
-        RaceMissionUI.SetActive(false);
-        TimerUI.text = ""; // Set initial text to empty
+        RaceMissionUI.text="";
+        TimerUI.text = "";
+        RaceUI.SetActive(false);
     }
 
     private void Update()
@@ -26,14 +29,14 @@ public class RaceMissiontrigger : MonoBehaviour
         if (isCountdownActive)
         {
             countdownTime -= Time.deltaTime;
-            TimerUI.text = "Timer:-" + countdownTime.ToString("0:00"); // Update timer display
+            TimerUI.text = "Timer:-" + countdownTime.ToString("0:00");
 
             if (countdownTime <= 0)
             {
-                Debug.Log("Too late! Mission aborted.");
+                RaceMissionUI.text = "Too late! Mission aborted.";
                 // Perform any additional actions for mission failure here
                 isCountdownActive = false;
-                TimerUI.text = ""; // Clear timer display after countdown ends
+                TimerUI.text = ""; 
             }
         }
     }
@@ -42,11 +45,14 @@ public class RaceMissiontrigger : MonoBehaviour
     {
         if (other.gameObject == MissionStart)
         {
-            if (!isLap1)
+            if (isLap1 == 1)
             {
-                RaceMissionUI.SetActive(true);
+                RaceMissionUI.text = "Mission Started! Goodluck : )";
                 StartCoroutine(DeactivateMission3UI());
-                isLap1 = true;
+                isLap1 = 2;
+                Mission2.text = "";
+                RaceUI.SetActive(true);
+            }
                 if (!isCountdownActive)
                 {
                     StartCoroutine(Countdown());
@@ -55,18 +61,22 @@ public class RaceMissiontrigger : MonoBehaviour
                 else if (countdownTime > 0)
                 {
                     Debug.Log("You win!");
-                    // Perform any additional actions for mission success here
-                    isCountdownActive = false;
-                    TimerUI.text = ""; // Clear timer display after success
-                }
+                  
+                     isCountdownActive = false;
+                     TimerUI.text = "";
+                     RaceMissionUI.text = "YAYY ! You win !";
+                    RaceUI.SetActive(false);
+                    StartCoroutine(DeactivateMission3UI());
+
             }
+            
         }
     }
 
     IEnumerator DeactivateMission3UI()
     {
         yield return new WaitForSeconds(3f);
-        RaceMissionUI.SetActive(false);
+        RaceMissionUI.text = "";
     }
 
     IEnumerator Countdown()

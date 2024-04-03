@@ -14,12 +14,12 @@ public class RaceMissiontrigger : MonoBehaviour
     public TextMeshProUGUI TimerUI;
     public TextMeshProUGUI Mission2;
 
-    private float countdownTime = 3 * 60f; 
+    private float countdownTime = 3 * 60f;
     private bool isCountdownActive = false;
     public int isLap1 = 1;
     private void Start()
     {
-        RaceMissionUI.text="";
+        RaceMissionUI.text = "";
         TimerUI.text = "";
         RaceUI.SetActive(false);
     }
@@ -34,9 +34,10 @@ public class RaceMissiontrigger : MonoBehaviour
             if (countdownTime <= 0)
             {
                 RaceMissionUI.text = "Too late! Mission aborted.";
+                StartCoroutine(DeactivateMission3UI());
                 // Perform any additional actions for mission failure here
                 isCountdownActive = false;
-                TimerUI.text = ""; 
+                TimerUI.text = "";
             }
         }
     }
@@ -53,23 +54,23 @@ public class RaceMissiontrigger : MonoBehaviour
                 Mission2.text = "";
                 RaceUI.SetActive(true);
             }
-                if (!isCountdownActive)
-                {
-                    StartCoroutine(Countdown());
-                    isCountdownActive = true;
-                }
-                else if (countdownTime > 0)
-                {
-                    Debug.Log("You win!");
-                  
-                     isCountdownActive = false;
-                     TimerUI.text = "";
-                     RaceMissionUI.text = "YAYY ! You win !";
-                    RaceUI.SetActive(false);
-                    StartCoroutine(DeactivateMission3UI());
+            if (!isCountdownActive)
+            {
+                StartCoroutine(Countdown());
+                isCountdownActive = true;
+            }
+            else if (countdownTime > 0)
+            {
+                Debug.Log("You win!");
+                countdownTime = 3 * 60f;
+                isCountdownActive = false;
+                TimerUI.text = "";
+                RaceMissionUI.text = "YAYY ! You win !";
+                RaceUI.SetActive(false);
+                StartCoroutine(DeactivateMission3UI());
 
             }
-            
+
         }
     }
 

@@ -6977,7 +6977,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Mission-1:
 
-    Get in the Car
+    Get in the Blue Car
 
 '
   m_isRightToLeft: 0
@@ -8087,7 +8087,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b40024ee4068b5f408d96d476bff1354, type: 2}
+  - {fileID: 2100000, guid: 6de9a2eeffbc1564e988389b4721a64a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10477,7 +10477,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b40024ee4068b5f408d96d476bff1354, type: 2}
+  - {fileID: 2100000, guid: bcb2bbb550d691847b600cca2ae30756, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17521,9 +17521,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 23000014009289166, guid: 01fd6d8578da5054c80273c1d59d2cf9, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 23000014009289166, guid: 01fd6d8578da5054c80273c1d59d2cf9, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b40024ee4068b5f408d96d476bff1354, type: 2}
+      objectReference: {fileID: 2100000, guid: 6de9a2eeffbc1564e988389b4721a64a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1000012867623364, guid: 01fd6d8578da5054c80273c1d59d2cf9, type: 3}
@@ -22648,7 +22652,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bcb2bbb550d691847b600cca2ae30756, type: 2}
+  - {fileID: 2100000, guid: b90da8963eb48cb489634ea1360c7ada, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -26967,7 +26971,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b40024ee4068b5f408d96d476bff1354, type: 2}
+  - {fileID: 2100000, guid: b90da8963eb48cb489634ea1360c7ada, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -68311,7 +68315,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b40024ee4068b5f408d96d476bff1354, type: 2}
+  - {fileID: 2100000, guid: b90da8963eb48cb489634ea1360c7ada, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -68398,9 +68402,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Mission-3:
-
-    Complete 3 Laps before the Timer End!'
+  m_text: "Mission-3:\nComplete 3 Laps \nbefore the Timer End!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

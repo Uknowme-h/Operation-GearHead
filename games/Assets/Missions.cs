@@ -2,11 +2,9 @@ using System.Collections;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
-
-// Remove Unity.VisualScripting (if not needed)
 using UnityEngine;
 using UnityEngine.UI;
-using KeyCode = UnityEngine.KeyCode; // Explicitly define KeyCode type�
+using KeyCode = UnityEngine.KeyCode;
 
 public class MissionController : MonoBehaviour
 {
@@ -16,14 +14,15 @@ public class MissionController : MonoBehaviour
     public bool Mission4 = false;
     public GameObject mission1UI;
     public GameObject mission2UI;
-    public TextMeshProUGUI ScoreUI;
-    private int score = 0;
-    public GameObject car; // Reference to the car GameObject (or null if car is a Prefab)
-    private float maxHeight = 0f; // Stores the maximum height of the car
+
+    public GameObject car;
+    private float maxHeight = 0f;
     private Vector3 startPosition;
 
-    private Collider racingTrackTrigger; // Reference to the trigger collider in the racing track
-    private KeyCode switchKey = KeyCode.C; // Key to switch to car (assuming 'C')
+    private Collider racingTrackTrigger;
+    private KeyCode switchKey = KeyCode.C;
+
+
 
     private void Start()
     {
@@ -46,17 +45,15 @@ public class MissionController : MonoBehaviour
         CheckCarActive();
         CheckLanding();
 
-        ScoreUI.text = "Score: " + score;
     }
 
     private void CheckCarActive()
     {
-        if (Mission1 && Input.GetKeyDown(switchKey)) // Check for "Get in the car" message and C key press
+        if (Mission1 && Input.GetKeyDown(switchKey))
         {
-            Mission1 = false; // Reset Mission 1 as car is assumed active
+            Mission1 = false;
             Mission2 = true;
             mission1UI.SetActive(false);
-            score += 10;
             mission2UI.SetActive(true);
 
 
@@ -65,29 +62,29 @@ public class MissionController : MonoBehaviour
 
 
 
+
     private void CheckLanding()
     {
         if (Mission4)
         {
-            // Raycast a short distance down for initial ground check (optional)
-            float raycastDistance = 50f; // Adjust this value based on your car's size and expected landing clearance
-            RaycastHit hit;
-            // Raycast forward from a point in front of the car
-            float offset = 20f; // Adjust this value based on your car model
 
-            // Raycast forward from a point in front of the car
+            float raycastDistance = 50f;
+            RaycastHit hit;
+
+            float offset = 20f;
+
+
             bool isGrounded = Physics.Raycast(car.transform.position + car.transform.forward * offset, Vector3.forward, out hit, raycastDistance);
 
 
-            // Find the ramp GameObject (adjust the name if needed)
+
             GameObject ramp = GameObject.Find("Ramp");
 
-            // Check if car is colliding with the top surface of the "Quad" (assuming it's a platform)
-            Collider Collider = GameObject.Find("CheckLandingCollider").GetComponent<BoxCollider>(); // Get any collider on the Quad
 
+            Collider Collider = GameObject.Find("CheckLandingCollider").GetComponent<BoxCollider>();
             if (isGrounded && Collider != null && Physics.Raycast(car.transform.position, Vector3.up, out hit, 20f) && hit.collider == Collider)
             {
-                Mission4 = false; // Reset Mission 4 after landing
+                Mission4 = false;
                 float maxDistance = Vector3.Distance(startPosition, car.transform.position);
                 Debug.Log("Maximum distance covered: " + maxDistance + " units!");
             }

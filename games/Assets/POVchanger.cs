@@ -30,6 +30,7 @@ public class PovManager : MonoBehaviour
 
     public enum GameState { Character, Car }
 
+
     void Start()
     {
         // Find the game object with the ThirdPersonController component
@@ -134,6 +135,7 @@ public class PovManager : MonoBehaviour
                 characterController.enabled = false;
                 carController.enabled = true;
                 carspeedUI.SetActive(true);
+               
 
 
                 Carsounds.SetActive(true);

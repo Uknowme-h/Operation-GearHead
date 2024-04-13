@@ -8,23 +8,24 @@ using UnityEngine;
 
 public class PovManager : MonoBehaviour
 {
-    // Replace these with the actual names of your cameras in the scene
+    
     public GameObject playerCamera;
     public GameObject CarCamera;
     public GameObject Carsounds;
     public GameObject unitychan;
     public GameObject charcter;
     public GameObject carspeedUI;
-    // Replace this with the actual name of your car controller script
-    public PrometeoCarController carController; // Assuming your car control script derives from CarController
+    public GameObject minimap;
+    
+    public PrometeoCarController carController; 
 
     public KeyCode switchKey = KeyCode.C;
 
-    // **Character set as default state**
+    
     private GameState currentState = GameState.Character;
 
-    // Reference to your third person controller script component
-    public StarterAssets.ThirdPersonController characterController; // Assuming your script is named ThirdPersonController
+    
+    public StarterAssets.ThirdPersonController characterController; 
 
     public float switchDistanceThreshold = 3f;
 
@@ -33,13 +34,14 @@ public class PovManager : MonoBehaviour
 
     void Start()
     {
-        // Find the game object with the ThirdPersonController component
+        
         GameObject characterControllerObject = GameObject.Find("PlayerArmature");
 
-        // Get the ThirdPersonController component from the found game object
+        
         characterController = characterControllerObject.GetComponent<StarterAssets.ThirdPersonController>();
 
-        // Ensure characterController is not null before accessing it
+        minimap.SetActive(false);
+
         if (characterController != null)
         {
             playerCamera.SetActive(true);
@@ -69,10 +71,7 @@ public class PovManager : MonoBehaviour
                 currentState = (currentState == GameState.Character) ? GameState.Car : GameState.Character;
                 charcter.transform.position = carPosition + new Vector3(2f, 0f, 0f);
                 UpdateCameraAndControls();
-                // Debug.Log(carPosition);
-                // Stop any currently running ShowTempMessage coroutine
-                //StopCoroutine(ShowTempMessage(5f, "Switching to " + currentState.ToString()));
-                //StartCoroutine(ShowTempMessage(5f, "Switching to " + currentState.ToString())); // Start new coroutine only when switching
+               
             }
             else
             {
@@ -86,15 +85,15 @@ public class PovManager : MonoBehaviour
     {
         if (currentState == GameState.Character)
         {
-            // Calculate the distance between the character and the car
+            
             float distance = Vector3.Distance(characterController.transform.position, carController.transform.position);
 
-            // Check if the distance is within the threshold
+            
             return distance <= switchDistanceThreshold;
         }
         else
         {
-            // Return true if not in character POV
+            
 
             return true;
         }
@@ -107,31 +106,28 @@ public class PovManager : MonoBehaviour
             case GameState.Character:
 
                 playerCamera.SetActive(true);
-
+                minimap.SetActive(false);
                 CarCamera.SetActive(false);
 
-                // Enable character controller and disable car controller
+                
                 characterController.enabled = true;
                 carController.enabled = false;
                 carspeedUI.SetActive(false);
 
                 Carsounds.SetActive(false);
-                // Disable audio listener on car camera
+               
                 playerCamera.GetComponent<AudioListener>().enabled = true;
                 CarCamera.GetComponent<AudioListener>().enabled = false;
 
-                // Make the character GameObject visible
+                
                 unitychan.SetActive(true);
-
-                // Reset the position and rotation of the character to match the car's
-
-
                 break;
             case GameState.Car:
+                minimap.SetActive(true);
                 playerCamera.SetActive(false);
                 CarCamera.SetActive(true);
 
-                // Disable character controller and enable car controller
+                
                 characterController.enabled = false;
                 carController.enabled = true;
                 carspeedUI.SetActive(true);
@@ -139,11 +135,11 @@ public class PovManager : MonoBehaviour
 
 
                 Carsounds.SetActive(true);
-                // Enable audio listener on player camera
+                
                 playerCamera.GetComponent<AudioListener>().enabled = false;
                 CarCamera.GetComponent<AudioListener>().enabled = true;
 
-                // Make the character GameObject invisible
+                
                 unitychan.SetActive(false);
                 break;
         }
@@ -154,7 +150,7 @@ public class PovManager : MonoBehaviour
         float timeElapsed = 0f;
         while (timeElapsed < duration)
         {
-            Debug.Log(message); // Log the provided message
+            Debug.Log(message); 
             timeElapsed += Time.deltaTime;
             yield return null;
         }

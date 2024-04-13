@@ -54811,6 +54811,7 @@ MonoBehaviour:
   unitychan: {fileID: 345785125}
   charcter: {fileID: 1995045304}
   carspeedUI: {fileID: 1797412584}
+  minimap: {fileID: 1892376158}
   carController: {fileID: 1604212928}
   switchKey: 99
   characterController: {fileID: 1995045323}
@@ -68387,6 +68388,7 @@ MonoBehaviour:
   unitychan: {fileID: 345785125}
   charcter: {fileID: 1995045304}
   carspeedUI: {fileID: 1797412584}
+  minimap: {fileID: 1892376158}
   carController: {fileID: 1604212928}
   switchKey: 99
   characterController: {fileID: 1995045323}

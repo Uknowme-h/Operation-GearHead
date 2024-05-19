@@ -3,6 +3,7 @@
 **Gear up and race across the open world!**
 
 This Unity 3D project lets you drive a single, customizable car through missions in a vast, explorable world. Blast the radio, conquer challenges, and climb the scoreboards!
+you can contribute to this project by forking and commiting your changes.
 
 ![image](https://github.com/Uknowme-h/Operation-GearHead/assets/152166858/d973df99-7667-45d9-b2eb-a69070b8e460)
 

@@ -50,7 +50,7 @@ public class CarRadio : MonoBehaviour
             }
 
         }
-
+        // pausing the radio when the player leaves the car
         if (!isInCar && isRadioOn)
         {
             radioSource.Stop();
